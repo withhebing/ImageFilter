@@ -10,6 +10,8 @@
 
 @interface ViewController ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *imgView;
+
 @end
 
 @implementation ViewController
@@ -22,6 +24,46 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)photoEffectChrome {
+
+}
+
+- (IBAction)photoEffectFade {
+
+}
+
+- (IBAction)photoEffectInstant {
+
+}
+
+- (IBAction)photoEffectMono {
+
+}
+
+- (IBAction)photoEffectNoir {
+
+}
+
+- (IBAction)photoEffectProgress {
+
+}
+
+- (IBAction)photoEffectTonal {
+
+}
+
+- (IBAction)photoEffectTransfer {
+
+}
+
+- (IBAction)photoEffectOriginal {
+
+}
+
+- (IBAction)photoEffectAutoAdjust {
+
 }
 
 @end
