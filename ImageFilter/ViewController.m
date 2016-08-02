@@ -31,7 +31,7 @@
     self.imgView.layer.shadowColor = [UIColor blackColor].CGColor;
     self.imgView.layer.shadowOffset = CGSizeMake(1, 1);
 
-//    [self showFilters];
+    [self showFilters];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,7 +45,7 @@
         NSLog(@"%@", filterName);
         CIFilter *filter = [CIFilter filterWithName:filterName];
         NSDictionary *attributes = filter.attributes;
-        NSLog(@"%@", attributes);
+        NSLog(@"%@", attributes);   // 查看属性
     }
 }
 
