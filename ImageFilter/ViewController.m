@@ -51,7 +51,7 @@
 
 #pragma mark - photo effect
 
-// 抽取的方法
+// 抽取的方法, 标准格式
 - (UIImage *)outputImageWithFilterName:(NSString *)filterName {
     //将UIImage转换成CIImage
 //    CIImage *ciImage = self.filterlessImage.CIImage; // 无效, 不显示; 为什么要新建一个呢? -- 未分配内存空间
@@ -76,11 +76,10 @@
     return image;
 }
 
+// CGImage, context
 - (IBAction)photoEffectChrome {
     self.filter = [CIFilter filterWithName:@"CIPhotoEffectChrome"];
 
-    // output
-//    CIImage *inputImage = self.filterlessImage.CIImage;
     CIImage *inputImage = [[CIImage alloc] initWithImage:self.filterlessImage];
     [self.filter setValue:inputImage forKey:kCIInputImageKey];
     CIImage *outputImage = self.filter.outputImage;
@@ -91,11 +90,10 @@
     CGImageRelease(cgImage);   // cgImage后释放
 }
 
+// CIImage, 尺寸有点小问题
 - (IBAction)photoEffectFade {
     self.filter = [CIFilter filterWithName:@"CIPhotoEffectFade"];
 
-    // output
-//    CIImage *inputImage = self.filterlessImage.CIImage;
     CIImage *inputImage = [[CIImage alloc] initWithImage:self.filterlessImage];
     [self.filter setValue:inputImage forKey:kCIInputImageKey];
     CIImage *outputImage = self.filter.outputImage;
