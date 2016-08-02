@@ -31,41 +31,6 @@ this is a brief demo of filters with "photo effect"
 }
 ```
 
-Core Image 提供的滤镜很多, 不便记忆. 可通过`打印`或`po filter.attributes`方式查看相应信息.
-```objc
-// 打印滤镜名称
-- (void)showFilters {
-    NSArray *filterNames = [CIFilter filterNamesInCategory:kCICategoryColorEffect];
-    for (NSString *filterName in filterNames) {
-        NSLog(@"%@", filterName);
-        // CIFilter *filter = [CIFilter filterWithName:filterName];
-        // NSDictionary *attributes = filter.attributes;
-        // NSLog(@"%@", attributes); // 查看属性
-    }
-}
-```
-
-```objc
-// 自动调整样式
-- (UIImage *)photoEffectAutoAdjust {
-    CIImage *ciImage = [[CIImage alloc] initWithImage:self.filterlessImage];
-    NSArray *filters = [ciImage autoAdjustmentFiltersWithOptions:nil];
-    CIImage *outputImage;
-    for (CIFilter *filter in filters) {
-        [filter setValue:ciImage forKey:kCIInputImageKey];
-        [filter setDefaults];
-        outputImage = filter.outputImage;
-    }
-
-    self.context = [CIContext contextWithOptions:nil];
-    CGImageRef cgImage = [self.context createCGImage:outputImage fromRect:[outputImage extent]];
-    UIImage *image = [UIImage imageWithCGImage:cgImage];
-    CGImageRelease(cgImage);
-
-    return image;
-}
-```
-
 ### 效果图如下:
 
 ###### original image 原图
