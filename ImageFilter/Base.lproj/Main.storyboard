@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ivy_chen" translatesAutoresizingMaskIntoConstraints="NO" id="UeI-2Z-H0w" userLabel="originalImage">
-                                <rect key="frame" x="20" y="20" width="335" height="210"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ivy_chen" translatesAutoresizingMaskIntoConstraints="NO" id="Q2A-eG-azE" userLabel="filteredImage">
+                                <rect key="frame" x="20" y="270" width="335" height="210"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hi3-dw-lft">
                                 <rect key="frame" x="19" y="498" width="55" height="30"/>
@@ -90,8 +90,8 @@
                                     <action selector="photoEffectAutoAdjust" destination="BYZ-38-t0r" eventType="touchUpInside" id="qAd-Gn-1Nc"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ivy_chen" translatesAutoresizingMaskIntoConstraints="NO" id="Q2A-eG-azE" userLabel="filteredImage">
-                                <rect key="frame" x="20" y="258" width="335" height="210"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ivy_chen" translatesAutoresizingMaskIntoConstraints="NO" id="UeI-2Z-H0w" userLabel="originalImage">
+                                <rect key="frame" x="20" y="37" width="335" height="210"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
