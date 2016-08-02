@@ -1,5 +1,5 @@
 # ImageFilter
-this is a brief demo of filters with "photo effect"
+this is a brief demo of filters about photo effect
 
 思路: originalUIImage -> inputCIImage -> (CIFilter) -> outputCIImage -> (CIContext) -> CGImage -> UIImage
 
