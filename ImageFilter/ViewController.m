@@ -51,9 +51,10 @@
 
 #pragma mark - photo effect
 
+// 抽取的方法
 - (void)outputImageWithFilterName:(NSString *)filterName {
     //将UIImage转换成CIImage
-//    CIImage *ciImage = self.filterlessImage.CIImage; // 无效, 不显示; 为什么要新建一个呢
+//    CIImage *ciImage = self.filterlessImage.CIImage; // 无效, 不显示; 为什么要新建一个呢? -- 未分配内存空间
     CIImage *ciImage = [[CIImage alloc] initWithImage:self.filterlessImage];
     //创建滤镜
     self.filter = [CIFilter filterWithName:filterName keysAndValues:kCIInputImageKey, ciImage, nil];
@@ -62,10 +63,9 @@
 
     //渲染并输出CIImage
     CIImage *outputImage = [self.filter outputImage];
+
     //获取绘制上下文
     self.context = [CIContext contextWithOptions:nil];
-
-
     //创建CGImage句柄
     CGImageRef cgImage = [self.context createCGImage:outputImage fromRect:[outputImage extent]];
     //获取图片
@@ -101,7 +101,7 @@
     CIImage *outputImage = self.filter.outputImage;
 
     self.imgView.image = [UIImage imageWithCIImage:outputImage];
-    self.imgView.contentMode = UIViewContentModeScaleAspectFit;     // 大小有变化, 且调整不了
+    self.imgView.contentMode = UIViewContentModeScaleAspectFit;     // 大小有变化, 调整不了?
 }
 
 - (IBAction)photoEffectInstant {
@@ -134,6 +134,21 @@
 
 - (IBAction)photoEffectAutoAdjust {
 
+    CIImage *ciImage = [[CIImage alloc] initWithImage:self.filterlessImage];
+    NSArray *filters = [ciImage autoAdjustmentFiltersWithOptions:nil];
+    CIImage *outputImage;
+    for (CIFilter *filter in filters) {
+        [filter setValue:ciImage forKey:kCIInputImageKey];
+        [filter setDefaults];
+        outputImage = filter.outputImage;
+    }
+
+    self.context = [CIContext contextWithOptions:nil];
+    CGImageRef cgImage = [self.context createCGImage:outputImage fromRect:[outputImage extent]];
+    UIImage *image = [UIImage imageWithCGImage:cgImage];
+    CGImageRelease(cgImage);
+
+    self.imgView.image = image;
 }
 
 @end
