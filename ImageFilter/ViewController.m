@@ -52,7 +52,7 @@
 #pragma mark - photo effect
 
 // 抽取的方法
-- (void)outputImageWithFilterName:(NSString *)filterName {
+- (UIImage *)outputImageWithFilterName:(NSString *)filterName {
     //将UIImage转换成CIImage
 //    CIImage *ciImage = self.filterlessImage.CIImage; // 无效, 不显示; 为什么要新建一个呢? -- 未分配内存空间
     CIImage *ciImage = [[CIImage alloc] initWithImage:self.filterlessImage];
@@ -73,7 +73,7 @@
     //释放CGImage句柄
     CGImageRelease(cgImage);
     
-    self.imgView.image = image;
+    return image;
 }
 
 - (IBAction)photoEffectChrome {
@@ -105,27 +105,27 @@
 }
 
 - (IBAction)photoEffectInstant {
-    [self outputImageWithFilterName:@"CIPhotoEffectInstant"];
+    self.imgView.image = [self outputImageWithFilterName:@"CIPhotoEffectInstant"];
 }
 
 - (IBAction)photoEffectMono {
-    [self outputImageWithFilterName:@"CIPhotoEffectMono"];
+    self.imgView.image = [self outputImageWithFilterName:@"CIPhotoEffectMono"];
 }
 
 - (IBAction)photoEffectNoir {
-    [self outputImageWithFilterName:@"CIPhotoEffectNoir"];
+    self.imgView.image = [self outputImageWithFilterName:@"CIPhotoEffectNoir"];
 }
 
 - (IBAction)photoEffectProgress {
-    [self outputImageWithFilterName:@"CIPhotoEffectProcess"];
+    self.imgView.image = [self outputImageWithFilterName:@"CIPhotoEffectProcess"];
 }
 
 - (IBAction)photoEffectTonal {
-    [self outputImageWithFilterName:@"CIPhotoEffectTonal"];
+    self.imgView.image = [self outputImageWithFilterName:@"CIPhotoEffectTonal"];
 }
 
 - (IBAction)photoEffectTransfer {
-    [self outputImageWithFilterName:@"CIPhotoEffectTransfer"];
+    self.imgView.image = [self outputImageWithFilterName:@"CIPhotoEffectTransfer"];
 }
 
 - (IBAction)photoEffectOriginal {
