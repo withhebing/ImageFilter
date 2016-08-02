@@ -12,6 +12,10 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (nonatomic, strong) UIImage *filterlessImage;
+/// filter
+@property (nonatomic, strong) CIFilter *filter;
+/// context
+@property (nonatomic, strong) CIContext *context;
 
 @end
 
@@ -22,10 +26,10 @@
 
     self.filterlessImage = [UIImage imageNamed:@"ivy_chen"];
 
+    self.imgView.image = self.filterlessImage;
     self.imgView.layer.opaque = 0.8;
     self.imgView.layer.shadowColor = [UIColor blackColor].CGColor;
     self.imgView.layer.shadowOffset = CGSizeMake(1, 1);
-    self.imgView.image = self.filterlessImage;
 
     [self showFilters];
 }
@@ -38,9 +42,9 @@
 - (void)showFilters {
     NSArray *filterNames = [CIFilter filterNamesInCategory:kCICategoryColorEffect];
     for (NSString *filterName in filterNames) {
-//        NSLog(@"%@", filterName);
-        CIFilter *filter = [CIFilter filterWithName:filterName];
-        NSDictionary *attributes = filter.attributes;
+        NSLog(@"%@", filterName);
+//        CIFilter *filter = [CIFilter filterWithName:filterName];
+//        NSDictionary *attributes = filter.attributes;
 //        NSLog(@"%@", attributes);
     }
 }
@@ -48,11 +52,27 @@
 #pragma mark - photo effect
 
 - (IBAction)photoEffectChrome {
+    self.filter = [CIFilter filterWithName:@"CIPhotoEffectChrome"];
 
+    // output
+    CIImage *inputImage = self.filterlessImage.CIImage;
+    [self.filter setValue:inputImage forKey:kCIInputImageKey];
+    CIImage *outputImage = self.filter.outputImage;
+//    self.imgView.image = [UIImage imageWithCIImage:outputImage];
+    CGImageRef cgImage = [self.context createCGImage:outputImage fromRect:outputImage.extent];
+    self.imgView.image = [UIImage imageWithCGImage:cgImage];
 }
 
 - (IBAction)photoEffectFade {
+    self.filter = [CIFilter filterWithName:@"CIPhotoEffectFade"];
 
+    // output
+    CIImage *inputImage = self.filterlessImage.CIImage;
+    [self.filter setValue:inputImage forKey:kCIInputImageKey];
+    CIImage *outputImage = self.filter.outputImage;
+    self.imgView.image = [UIImage imageWithCIImage:outputImage];
+//    CGImageRef cgImage = [self.context createCGImage:outputImage fromRect:outputImage.extent];
+//    self.imgView.image = [UIImage imageWithCGImage:cgImage];
 }
 
 - (IBAction)photoEffectInstant {
